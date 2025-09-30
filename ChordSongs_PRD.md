@@ -13,7 +13,7 @@ ChordSongs helps beginner guitar players discover real songs they can play using
 ## Essential Features
 
 **Chord Picker**
-- Functionality: Visual chord selector with common guitar chords (C, G, D, Em, Am, F, etc.)
+- Functionality: Visual chord selector with common guitar chords (C, G, D, Em, Am, F, etc.). Avoid more complex chords like 7th, etc.
 - Purpose: Constrains input to valid chords and prevents typos
 - Trigger: User clicks chord buttons to build their chord set
 - Progression: Select chords → see count update → view matching songs
@@ -74,6 +74,10 @@ Clean, friendly sans-serif that maintains excellent readability for chord charts
   - H3 (Section Headers): Inter Medium/18px/normal spacing
   - Body (Lyrics/UI): Inter Regular/16px/relaxed line height
   - Chords (Chord Names): Inter Bold/14px/tight spacing
+
+## App Logo
+Use file chordsongs_bigger_trans.png in the banner / header of the app page.
+Use file chordsongs_original.png for the app logo
 
 ## Animations
 
