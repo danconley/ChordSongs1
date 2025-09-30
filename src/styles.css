@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: oklch(0.65 0.15 220);
+  --secondary: oklch(0.85 0.05 45);
+  --accent: oklch(0.72 0.15 35);
+  --bg: #FDFCFA;
+  --text: oklch(0.25 0.1 220);
+  --white: oklch(0.98 0 0);
+}
+
+body, .app-bg {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--primary);
+  color: var(--white);
+  padding: 1rem 2rem;
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 2px 8px #0001;
+}
+.logo {
+  height: 48px;
+  margin-right: 1rem;
+}
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin: 0 1rem 0 0;
+}
+.tab-btn {
+  background: var(--secondary);
+  color: var(--text);
+  border: none;
+  border-radius: 16px;
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  margin-left: auto;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.tab-btn:hover, .tab-btn:focus {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.chord-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0 1rem 0;
+}
+.chord-btn {
+  background: var(--secondary);
+  color: var(--text);
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 1px 4px #0001;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+.chord-btn.selected {
+  background: var(--primary);
+  color: var(--white);
+  transform: scale(1.08);
+}
+.chord-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.chord-count {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.song-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.song-card {
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px #0002;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.1s;
+  position: relative;
+}
+.song-card:hover {
+  box-shadow: 0 4px 16px #0002;
+  transform: translateY(-2px) scale(1.01);
+}
+.song-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.song-artist {
+  font-size: 1rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+.song-chords {
+  display: flex;
+  gap: 0.5rem;
+}
+.chord-badge {
+  background: var(--secondary);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.heart-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--accent);
+  cursor: pointer;
+  margin-left: auto;
+  transition: transform 0.15s, color 0.2s;
+}
+.heart-btn.favorited {
+  color: var(--accent);
+  transform: scale(1.2) rotate(-10deg);
+  text-shadow: 0 2px 8px #fbb;
+}
+.heart-btn.detail {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+.song-detail {
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 2px 12px #0002;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+.back-btn {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.back-btn:hover, .back-btn:focus {
+  background: var(--accent);
+}
+.lyrics {
+  font-family: 'Inter', monospace;
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  white-space: pre-wrap;
+  line-height: 1.7;
+}
+.empty-state {
+  color: var(--primary);
+  background: var(--secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 2rem 0;
+}
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+  .song-detail {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  .song-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+  .chord-grid {
+    gap: 0.5rem;
+  }
+}
