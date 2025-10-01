@@ -1,5 +1,7 @@
 import React from 'react';
 
+// Small set of chord diagrams used for the Chord Diagrams view.
+// Each diagram describes frets (0=open, null=muted), finger numbers and an optional startFret.
 const CHORD_DIAGRAMS = {
     "C": {
         frets: [0, 1, 0, 2, 3, 0], // from thickest to thinnest string
@@ -49,12 +51,14 @@ const CHORD_DIAGRAMS = {
 };
 
 export function ChordDiagram({ name, diagram }) {
+    // Props: name (string), diagram (object with frets/fingers/startFret)
     const stringCount = 6;
     const fretCount = 5;
     
     return (
         <div className="chord-diagram">
             <h3>{name}</h3>
+            {/* Inline SVG used to draw a compact fretboard representation */}
             <svg width="140" height="150" viewBox="0 0 140 150">
                 {/* Fretboard background */}
                 <rect x="20" y="10" width="120" height="120" fill="#f8d7a0"/>

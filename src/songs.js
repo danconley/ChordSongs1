@@ -1,3 +1,13 @@
+// SONGS array: each item should include at minimum:
+// - id: unique number
+// - title: string
+// - artist: string
+// - chords: array of chord names
+// Optional fields used by the app:
+// - lyricsSnippet: short non-copyrighted lyric excerpt
+// - structure: array describing song sections (name, chords, repeats)
+// - notes: performance/play tips
+// Avoid storing full copyrighted lyrics in the repo; use snippets instead.
 export const SONGS = [
   {
     id: 1,

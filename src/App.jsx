@@ -4,9 +4,13 @@ import "./chord-diagrams.css";
 import logo from "../chordsongs_bigger_trans.png";
 import { SONGS } from "./songs";
 import { ChordDiagrams } from "./ChordDiagrams";
+import SongCard from "./SongCard";
+import SongDetail from "./SongDetail";
 
+// Common chord set shown in the chord picker. Keep this in sync with `songs.js` suggestions.
 const CHORDS = ["C", "G", "D", "Em", "Am", "F", "A", "E", "Dm"];
 
+// Read favorites from localStorage. Return an array of song ids.
 function getFavorites() {
     try {
         return JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -15,10 +19,12 @@ function getFavorites() {
     }
 }
 
+// Persist favorites to localStorage. Called from an effect below.
 function setFavorites(favs) {
     localStorage.setItem("favorites", JSON.stringify(favs));
 }
 
+// Main application component. Manages view state, selected chords, and favorites.
 export default function App() {
     const [selectedChords, setSelectedChords] = useState([]);
     const [favorites, setFavs] = useState(getFavorites());
@@ -26,10 +32,12 @@ export default function App() {
     const [activeSong, setActiveSong] = useState(null);
     const [discoverVisible, setDiscoverVisible] = useState(false);
 
+    // Persist favorites when they change. Using a separate helper keeps side-effects contained.
     useEffect(() => {
         setFavorites(favorites);
     }, [favorites]);
 
+    // Toggle chord selection; limit to up to 4 chords for filtering.
     const toggleChord = (chord) => {
         setSelectedChords((prev) =>
             prev.includes(chord)
@@ -40,6 +48,8 @@ export default function App() {
         );
     };
 
+    // Filter songs that contain all selected chords.
+    // Note: when no chords selected, we return an empty list (encourage selection).
     const filteredSongs = SONGS.filter((song) =>
         selectedChords.length === 0
             ? false
@@ -53,38 +63,16 @@ export default function App() {
         );
     };
 
+    // Render a compact card for each song used in lists.
+    // Shows title, artist, a short snippet, chord badges, and favorite button.
     const renderSongCard = (song) => (
-        <div
+        <SongCard
             key={song.id}
-            className="song-card"
-            onClick={() => {
-                setActiveSong(song);
-                setView("detail");
-            }}
-        >
-            <div className="song-title">{song.title}</div>
-            <div className="song-artist">{song.artist}</div>
-            { (song.lyricsSnippet || song.lyrics) && (
-                <div className="song-snippet">{song.lyricsSnippet || String(song.lyrics).split('\n')[0]}</div>
-            ) }
-            <div className="song-chords">
-                {song.chords.map((c) => (
-                    <span className="chord-badge" key={c}>{c}</span>
-                ))}
-            </div>
-            <button
-                className={
-                    "heart-btn" + (isFavorite(song.id) ? " favorited" : "")
-                }
-                onClick={(e) => {
-                    e.stopPropagation();
-                    toggleFavorite(song.id);
-                }}
-                aria-label="Toggle Favorite"
-            >
-                {isFavorite(song.id) ? "♥" : "♡"}
-            </button>
-        </div>
+            song={song}
+            onSelect={(s) => { setActiveSong(s); setView('detail'); }}
+            onToggleFavorite={toggleFavorite}
+            isFavorited={isFavorite(song.id)}
+        />
     );
 
     return (
@@ -198,52 +186,12 @@ export default function App() {
             {view === "chords" && <ChordDiagrams />}
 
             {view === "detail" && activeSong && (
-                <div className="song-detail">
-                    <button className="back-btn" onClick={() => setView("main")}>← Back</button>
-                    <h2>{activeSong.title}</h2>
-                    <div className="song-artist">{activeSong.artist}</div>
-                    <div className="song-chords">
-                        {activeSong.chords.map((c) => (
-                            <span className="chord-badge" key={c}>{c}</span>
-                        ))}
-                    </div>
-                    <button
-                        className={
-                            "heart-btn detail" + (isFavorite(activeSong.id) ? " favorited" : "")
-                        }
-                        onClick={() => toggleFavorite(activeSong.id)}
-                        aria-label="Toggle Favorite"
-                    >
-                        {isFavorite(activeSong.id) ? "♥" : "♡"}
-                    </button>
-                    <div className="lyrics">
-                        {activeSong.lyricsSnippet ? (
-                            <p>{activeSong.lyricsSnippet}</p>
-                        ) : activeSong.lyrics ? (
-                            <pre>{activeSong.lyrics}</pre>
-                        ) : null}
-
-                        {activeSong.structure && (
-                            <div className="structure">
-                                <h4>Structure</h4>
-                                <ol>
-                                    {activeSong.structure.map((part, idx) => (
-                                        <li key={idx}>
-                                            <strong>{part.name}:</strong> {Array.isArray(part.chords) ? part.chords.join(' - ') : part.chords} {part.repeats ? `(x${part.repeats})` : ''}
-                                        </li>
-                                    ))}
-                                </ol>
-                            </div>
-                        )}
-
-                        {activeSong.notes && (
-                            <div className="notes">
-                                <h4>Notes</h4>
-                                <p>{activeSong.notes}</p>
-                            </div>
-                        )}
-                    </div>
-                </div>
+                <SongDetail
+                    song={activeSong}
+                    onBack={() => setView('main')}
+                    onToggleFavorite={toggleFavorite}
+                    isFavorited={isFavorite(activeSong.id)}
+                />
             )}
 
             {view === "favorites" && (
