@@ -2,7 +2,7 @@ import React from 'react';
 
 // Small set of chord diagrams used for the Chord Diagrams view.
 // Each diagram describes frets (0=open, null=muted), finger numbers and an optional startFret.
-const CHORD_DIAGRAMS = {
+export const CHORD_DIAGRAMS = {
     "C": {
         frets: [0, 1, 0, 2, 3, 0], // from thickest to thinnest string
         fingers: [0, 1, 0, 2, 3, 0], // 0 means open string
