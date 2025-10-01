@@ -4,31 +4,12 @@ export const SONGS = [
     title: "Leaving on a Jet Plane",
     artist: "John Denver",
     chords: ["C", "G", "D"],
-    lyrics: `C        G        D
-All my bags are packed, I'm ready to go
-C        G        D
-I'm standing here outside your door
-C        G        D
-I hate to wake you up to say goodbye
-C        G        D
-But the dawn is breaking, it's early morn
-C        G        D
-The taxi's waiting, he's blowing his horn
-C        G        D
-Already I'm so lonesome I could die
-
-G        C        D
-So kiss me and smile for me
-G        C        D
-Tell me that you'll wait for me
-G        C        D
-Hold me like you'll never let me go
-G        C        D
-'Cause I'm leaving on a jet plane
-G        C        D
-Don't know when I'll be back again
-G        C        D
-Oh babe, I hate to go`,
+    lyricsSnippet: "All my bags are packed, I'm ready to go",
+    structure: [
+      { name: "Verse", chords: ["C", "G", "D"], repeats: 2 },
+      { name: "Chorus", chords: ["G", "C", "D"], repeats: 2 }
+    ],
+    notes: "Easy three-chord song; capo optional. Good for beginners.",
     suggestion: ["C", "G", "D"],
   },
   {
@@ -36,28 +17,12 @@ Oh babe, I hate to go`,
     title: "I'm Yours",
     artist: "Jason Mraz",
     chords: ["C", "G", "Am", "F"],
-    lyrics: `C        G        Am        F
-Well, you done done me and you bet I felt it
-C        G        Am        F
-I tried to be chill but you're so hot that I melted
-C        G        Am        F
-I fell right through the cracks
-C        G        Am        F
-And now I'm trying to get back
-
-C        G        Am        F
-Before the cool done run out, I'll be giving it my bestest
-C        G        Am        F
-And nothing's going to stop me but divine intervention
-C        G        Am        F
-I reckon it's again my turn
-C        G        Am        F
-To win some or learn some
-
-C        G        Am        F
-But I won't hesitate no more, no more
-C        G        Am        F
-It cannot wait, I'm yours`,
+    lyricsSnippet: "Well you done done me and you bet I felt it",
+    structure: [
+      { name: "Verse", chords: ["C", "G", "Am", "F"], repeats: 4 },
+      { name: "Chorus", chords: ["C", "G", "Am", "F"], repeats: 2 }
+    ],
+    notes: "Laid-back strum; good for island/reggae feel. Try syncopated strumming.",
     suggestion: ["C", "G", "Am", "F"],
   },
   {
@@ -65,23 +30,12 @@ It cannot wait, I'm yours`,
     title: "Three Little Birds",
     artist: "Bob Marley",
     chords: ["A", "D", "E"],
-    lyrics: `A        D        E
-Don't worry about a thing
-A        D        E
-'Cause every little thing gonna be all right
-A        D        E
-Singing: Don't worry about a thing
-A        D        E
-'Cause every little thing gonna be all right
-
-A        D        E
-Rise up this mornin', smiled with the risin' sun
-A        D        E
-Three little birds pitch by my doorstep
-A        D        E
-Singin' sweet songs of melodies pure and true
-A        D        E
-Sayin', "This is my message to you-ou-ou"`,
+    lyricsSnippet: "Don't worry about a thing, 'cause every little thing is gonna be alright",
+    structure: [
+      { name: "Intro", chords: ["A", "D", "E"], repeats: 1 },
+      { name: "Verse/Chorus", chords: ["A", "D", "E"], repeats: 4 }
+    ],
+    notes: "Upbeat reggae strum. Keep the rhythm light and bouncy.",
     suggestion: ["A", "D", "E"],
   },
   {
@@ -89,23 +43,13 @@ Sayin', "This is my message to you-ou-ou"`,
     title: "Brown Eyed Girl",
     artist: "Van Morrison",
     chords: ["G", "C", "D", "Em"],
-    lyrics: `G        C        G        D
-Hey, where did we go
-G        C        G        D
-Days when the rains came
-G        C        G        D
-Down in the hollow
-G        C        G        D
-Playing a new game
-
-G        C        G        D
-Laughing and a-running, hey, hey
-G        C        G        D
-Skipping and a-jumping
-G        C        G        D
-In the misty morning fog with
-G        C        G        D
-Our hearts a-thumping and you`,
+    lyricsSnippet: "Hey, where did we go? Days when the rains came.",
+    structure: [
+      { name: "Intro", chords: ["G", "C", "G", "D"], repeats: 1 },
+      { name: "Verse", chords: ["G", "C", "G", "D"], repeats: 2 },
+      { name: "Chorus", chords: ["G", "C", "D", "Em"], repeats: 2 }
+    ],
+    notes: "Classic pop groove; try bright strumming and a jangly tone.",
     suggestion: ["G", "C", "D", "Em"],
   },
   {
@@ -113,14 +57,12 @@ Our hearts a-thumping and you`,
     title: "Sweet Home Alabama",
     artist: "Lynyrd Skynyrd",
     chords: ["D", "C", "G"],
-    lyrics: `D        C        G
-Big wheels keep on turning
-D        C        G
-Carry me home to see my kin
-D        C        G
-Singing songs about the Southland
-D        C        G
-I miss Alabamy once again`,
+    lyricsSnippet: "Big wheels keep on turning, carry me home to see my kin",
+    structure: [
+      { name: "Intro/Riff", chords: ["D", "C", "G"], repeats: 4 },
+      { name: "Verse", chords: ["D", "C", "G"], repeats: 3 }
+    ],
+    notes: "Drive the groove with the signature riff; palm mute for texture.",
     suggestion: ["D", "C", "G"],
   },
   {
@@ -128,10 +70,12 @@ I miss Alabamy once again`,
     title: "Let It Be",
     artist: "The Beatles",
     chords: ["C", "G", "Am", "F"],
-    lyrics: `C             G               Am          F
-When I find myself in times of trouble, Mother Mary comes to me
-C                G              F   C
-Speaking words of wisdom, let it be`,
+    lyricsSnippet: "Speaking words of wisdom, let it be",
+    structure: [
+      { name: "Verse", chords: ["C", "G", "Am", "F"], repeats: 2 },
+      { name: "Chorus", chords: ["C", "G", "F", "C"], repeats: 2 }
+    ],
+    notes: "Gentle piano/strum arrangement works well. Keep dynamics simple.",
     suggestion: ["C", "G", "Am", "F"],
   },
   {
@@ -139,12 +83,12 @@ Speaking words of wisdom, let it be`,
     title: "Stand By Me",
     artist: "Ben E. King",
     chords: ["C", "Am", "F", "G"],
-    lyrics: `C       Am      F        G
-When the night has come
-C        Am        F        G
-And the land is dark
-C        Am        F        G
-And the moon is the only light we'll see`,
+    lyricsSnippet: "When the night has come and the land is dark",
+    structure: [
+      { name: "Verse", chords: ["C", "Am", "F", "G"], repeats: 2 },
+      { name: "Chorus", chords: ["C", "Am", "F", "G"], repeats: 2 }
+    ],
+    notes: "Slow groove; focus on steady bass and simple arpeggio or strum.",
     suggestion: ["C", "Am", "F", "G"],
   },
   {
@@ -152,10 +96,12 @@ And the moon is the only light we'll see`,
     title: "Sweet Caroline",
     artist: "Neil Diamond",
     chords: ["D", "C", "G"],
-    lyrics: `D        C        G
-Where it began, I can't begin to knowing
-D        C        G
-But then I know it's growing strong`,
+    lyricsSnippet: "Where it began, I can't begin to knowin'",
+    structure: [
+      { name: "Verse", chords: ["D", "C", "G"], repeats: 2 },
+      { name: "Chorus", chords: ["G", "D", "C"], repeats: 2 }
+    ],
+    notes: "Big singalong chorus; emphasize dynamics leading into the chorus.",
     suggestion: ["D", "C", "G"],
   },
   {
@@ -163,10 +109,12 @@ But then I know it's growing strong`,
     title: "Wonderwall",
     artist: "Oasis",
     chords: ["Em", "G", "D", "A"],
-    lyrics: `Em         G         D         A
-Today is gonna be the day that they're gonna throw it back to you
-Em         G         D         A
-By now you should've somehow realized what you gotta do`,
+    lyricsSnippet: "Today is gonna be the day that they're gonna throw it back to you",
+    structure: [
+      { name: "Intro", chords: ["Em", "G", "D", "A"], repeats: 1 },
+      { name: "Verse/Chorus", chords: ["Em", "G", "D", "A"], repeats: 4 }
+    ],
+    notes: "Strumming with a steady pulse; consider capo to match original key.",
     suggestion: ["Em", "G", "D", "A"],
   },
   {
@@ -174,10 +122,12 @@ By now you should've somehow realized what you gotta do`,
     title: "Hey There Delilah",
     artist: "Plain White T's",
     chords: ["D", "F", "G", "A"],
-    lyrics: `D             F             G             A
-Hey there Delilah, what's it like in New York City?
-D             F             G             A
-I'm a thousand miles away but girl tonight you look so pretty`,
+    lyricsSnippet: "Hey there Delilah, what's it like in New York City?",
+    structure: [
+      { name: "Intro/Verse", chords: ["D", "F", "G", "A"], repeats: 2 },
+      { name: "Chorus", chords: ["D", "F", "G", "A"], repeats: 2 }
+    ],
+    notes: "Fingerpicked patterns work nicely; keep it intimate and light.",
     suggestion: ["D", "F", "G", "A"],
   },
   {
@@ -185,10 +135,12 @@ I'm a thousand miles away but girl tonight you look so pretty`,
     title: "Knockin' on Heaven's Door",
     artist: "Bob Dylan",
     chords: ["G", "D", "Am", "C"],
-    lyrics: `G         D         Am
-Mama, take this badge off of me
-G         D         C
-I can't use it anymore`,
+    lyricsSnippet: "Mama, take this badge off of me, I can't use it anymore",
+    structure: [
+      { name: "Verse", chords: ["G", "D", "Am", "C"], repeats: 3 },
+      { name: "Chorus", chords: ["G", "D", "C"], repeats: 2 }
+    ],
+    notes: "Simple strummed progression; great for singalongs.",
     suggestion: ["G", "D", "Am", "C"],
   },
   {
@@ -196,10 +148,12 @@ I can't use it anymore`,
     title: "Sweet Dreams (Are Made of This)",
     artist: "Eurythmics",
     chords: ["Am", "F", "E"],
-    lyrics: `Am                 F        E
-Sweet dreams are made of this
-Am                 F        E
-Who am I to disagree?`,
+    lyricsSnippet: "Sweet dreams are made of this, who am I to disagree?",
+    structure: [
+      { name: "Intro/Riff", chords: ["Am", "F", "E"], repeats: 4 },
+      { name: "Verse", chords: ["Am", "F", "E"], repeats: 3 }
+    ],
+    notes: "Synthy riff can be adapted to guitar; try octave hooks for flavor.",
     suggestion: ["Am", "F", "E"],
   },
   {
@@ -207,10 +161,12 @@ Who am I to disagree?`,
     title: "With or Without You",
     artist: "U2",
     chords: ["D", "A", "Em", "G"],
-    lyrics: `D         A         Em        G
-See the stone set in your eyes
-D         A         Em        G
-See the thorn twist in your side`,
+    lyricsSnippet: "See the stone set in your eyes, see the thorn twist in your side",
+    structure: [
+      { name: "Intro", chords: ["D", "A", "Em", "G"], repeats: 1 },
+      { name: "Verse/Chorus", chords: ["D", "A", "Em", "G"], repeats: 4 }
+    ],
+    notes: "Use ambient delay and gradual build for the classic U2 sound.",
     suggestion: ["D", "A", "Em", "G"],
   },
   {
@@ -218,10 +174,12 @@ See the thorn twist in your side`,
     title: "Ring of Fire",
     artist: "Johnny Cash",
     chords: ["G", "C", "D"],
-    lyrics: `G        C        D
-Love is a burning thing
-G        C        D
-And it makes a fiery ring`,
+    lyricsSnippet: "Love is a burning thing and it makes a fiery ring",
+    structure: [
+      { name: "Intro", chords: ["G", "C", "D"], repeats: 1 },
+      { name: "Verse/Chorus", chords: ["G", "C", "D"], repeats: 4 }
+    ],
+    notes: "Trumpet-like rhythm can be mimicked on guitar with muted strums.",
     suggestion: ["G", "C", "D"],
   },
   {
@@ -229,10 +187,12 @@ And it makes a fiery ring`,
     title: "Time After Time",
     artist: "Cyndi Lauper",
     chords: ["C", "G", "Am", "F"],
-    lyrics: `C             G             Am            F
-Lying in my bed I hear the clock tick and think of you
-C             G             Am            F
-Caught up in circles, confusion is nothing new`,
+    lyricsSnippet: "If you're lost you can look and you will find me, time after time",
+    structure: [
+      { name: "Verse", chords: ["C", "G", "Am", "F"], repeats: 2 },
+      { name: "Chorus", chords: ["C", "G", "Am", "F"], repeats: 2 }
+    ],
+    notes: "Soft, intimate arrangement; try fingerpicking for verses.",
     suggestion: ["C", "G", "Am", "F"],
   },
   {
@@ -240,10 +200,12 @@ Caught up in circles, confusion is nothing new`,
     title: "Every Rose Has Its Thorn",
     artist: "Poison",
     chords: ["G", "C", "D", "Em"],
-    lyrics: `G              C              D        Em
-We both lie silently still in the dead of the night
-G              C              D        Em
-Although we both lie close together, we feel miles apart inside`,
+    lyricsSnippet: "We both lie silently still in the dead of the night",
+    structure: [
+      { name: "Intro/Verse", chords: ["G", "C", "D", "Em"], repeats: 2 },
+      { name: "Chorus", chords: ["G", "C", "D", "Em"], repeats: 2 }
+    ],
+    notes: "Slow ballad; clean tone and sparse picking complement the melody.",
     suggestion: ["G", "C", "D", "Em"],
   },
   {
@@ -251,10 +213,12 @@ Although we both lie close together, we feel miles apart inside`,
     title: "Redemption Song",
     artist: "Bob Marley",
     chords: ["G", "Em", "C", "Am"],
-    lyrics: `G             Em
-Old pirates, yes, they rob I
-C            Am
-Sold I to the merchant ships`,
+    lyricsSnippet: "Old pirates, yes, they rob I; sold I to the merchant ships",
+    structure: [
+      { name: "Intro/Verse", chords: ["G", "Em", "C", "Am"], repeats: 3 },
+      { name: "Bridge", chords: ["C", "G", "Am"], repeats: 1 }
+    ],
+    notes: "Fingerstyle or light strum works well; consider capo to match vocal range.",
     suggestion: ["G", "Em", "C", "Am"],
   },
   {
@@ -262,10 +226,12 @@ Sold I to the merchant ships`,
     title: "Blowin' in the Wind",
     artist: "Bob Dylan",
     chords: ["D", "G", "A"],
-    lyrics: `D              G              A
-How many roads must a man walk down
-D              G              A
-Before you call him a man?`,
+    lyricsSnippet: "How many roads must a man walk down?",
+    structure: [
+      { name: "Verse", chords: ["D", "G", "A"], repeats: 3 },
+      { name: "Chorus", chords: ["D", "G", "A"], repeats: 1 }
+    ],
+    notes: "Simple folk strum; good for singalongs and open mic sets.",
     suggestion: ["D", "G", "A"],
   },
   {
@@ -273,10 +239,12 @@ Before you call him a man?`,
     title: "Love Me Do",
     artist: "The Beatles",
     chords: ["G", "C", "D"],
-    lyrics: `G              C              D
-Love, love me do
-G              C              D
-You know I love you`,
+    lyricsSnippet: "Love, love me do; you know I love you",
+    structure: [
+      { name: "Intro/Verse", chords: ["G", "C", "D"], repeats: 2 },
+      { name: "Bridge", chords: ["C", "D", "G"], repeats: 1 }
+    ],
+    notes: "Great beginner song; simple down-strums keep the momentum.",
     suggestion: ["G", "C", "D"],
   },
   {
@@ -284,10 +252,12 @@ You know I love you`,
     title: "Take Me Home, Country Roads",
     artist: "John Denver",
     chords: ["G", "Em", "D", "C"],
-    lyrics: `G             Em
-Almost heaven, West Virginia
-D                     C              G
-Blue Ridge Mountains, Shenandoah River`,
+    lyricsSnippet: "Almost heaven, West Virginia; country roads, take me home",
+    structure: [
+      { name: "Intro", chords: ["G", "Em", "D", "C"], repeats: 1 },
+      { name: "Verse/Chorus", chords: ["G", "Em", "D", "C"], repeats: 4 }
+    ],
+    notes: "Open, folky strum; harmonies work well on the chorus.",
     suggestion: ["G", "Em", "D", "C"],
   },
 ];

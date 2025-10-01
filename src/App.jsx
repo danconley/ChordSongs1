@@ -64,6 +64,9 @@ export default function App() {
         >
             <div className="song-title">{song.title}</div>
             <div className="song-artist">{song.artist}</div>
+            { (song.lyricsSnippet || song.lyrics) && (
+                <div className="song-snippet">{song.lyricsSnippet || String(song.lyrics).split('\n')[0]}</div>
+            ) }
             <div className="song-chords">
                 {song.chords.map((c) => (
                     <span className="chord-badge" key={c}>{c}</span>
@@ -213,7 +216,33 @@ export default function App() {
                     >
                         {isFavorite(activeSong.id) ? "♥" : "♡"}
                     </button>
-                    <pre className="lyrics">{activeSong.lyrics}</pre>
+                    <div className="lyrics">
+                        {activeSong.lyricsSnippet ? (
+                            <p>{activeSong.lyricsSnippet}</p>
+                        ) : activeSong.lyrics ? (
+                            <pre>{activeSong.lyrics}</pre>
+                        ) : null}
+
+                        {activeSong.structure && (
+                            <div className="structure">
+                                <h4>Structure</h4>
+                                <ol>
+                                    {activeSong.structure.map((part, idx) => (
+                                        <li key={idx}>
+                                            <strong>{part.name}:</strong> {Array.isArray(part.chords) ? part.chords.join(' - ') : part.chords} {part.repeats ? `(x${part.repeats})` : ''}
+                                        </li>
+                                    ))}
+                                </ol>
+                            </div>
+                        )}
+
+                        {activeSong.notes && (
+                            <div className="notes">
+                                <h4>Notes</h4>
+                                <p>{activeSong.notes}</p>
+                            </div>
+                        )}
+                    </div>
                 </div>
             )}
 
