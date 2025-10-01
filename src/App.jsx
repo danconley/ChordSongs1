@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import "./chord-diagrams.css";
 import logo from "../chordsongs_bigger_trans.png";
-import { SONGS } from "../lib/songs";
+import { SONGS } from "@/lib/songs";
 import { ChordDiagrams } from "./ChordDiagrams";
 import SongCard from "./SongCard";
 import SongDetail from "./SongDetail";
