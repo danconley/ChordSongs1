@@ -17,6 +17,15 @@ body, .app-bg {
   min-height: 100vh;
 }
 
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -56,22 +65,33 @@ h1 {
 }
 
 .chord-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, 1fr);
   gap: 0.75rem;
-  margin: 1.5rem 0 1rem 0;
+  margin: 1.5rem auto 1rem auto;
+  max-width: 400px;
+  width: 100%;
+  padding: 0 1rem;
+  aspect-ratio: 1;
 }
 .chord-btn {
   background: var(--secondary);
   color: var(--text);
   border: none;
   border-radius: 12px;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 0;
+  width: 100%;
+  aspect-ratio: 1.5;
   font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 1px 4px #0001;
   transition: background 0.2s, color 0.2s, transform 0.1s;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .chord-btn.selected {
   background: var(--primary);

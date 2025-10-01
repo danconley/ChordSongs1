@@ -4,6 +4,7 @@ import "./chord-diagrams.css";
 import logo from "../chordsongs_bigger_trans.png";
 import { SONGS } from "./songs";
 import { ChordDiagrams } from "./ChordDiagrams";
+
 const CHORDS = ["C", "G", "D", "Em", "Am", "F", "A", "E", "Dm"];
 
 function getFavorites() {
@@ -138,53 +139,60 @@ export default function App() {
                     ) : (
                         <>
                             <h2>Pick Your Chords</h2>
-                            <div className="chord-grid">
-                                {CHORDS.map((chord) => (
-                                    <button
-                                        key={chord}
-                                        className={
-                                            "chord-btn" +
-                                            (selectedChords.includes(chord) ? " selected" : "")
-                                        }
-                                        onClick={() => toggleChord(chord)}
-                                        disabled={
-                                            !selectedChords.includes(chord) && selectedChords.length >= 4
-                                        }
-                                    >
-                                        {chord}
-                                    </button>
-                                ))}
-                            </div>
-                            <div className="chord-count">
-                                {selectedChords.length === 0
-                                    ? "Select 3–4 chords to get started!"
-                                    : `${filteredSongs.length} song(s) found`}
-                            </div>
-                            <div className="song-list">
-                                {selectedChords.length === 0 ? (
-                                    <div className="empty-state">Pick some chords above to discover songs you can play!</div>
-                                ) : filteredSongs.length === 0 ? (
-                                    <div className="empty-state">
-                                        No matches yet. Try adding or removing a chord!<br />
-                                        <div style={{ marginTop: '1rem' }}>
-                                            <b>Try these chord combos:</b>
-                                            <ul style={{ margin: '0.5rem 0 0 1.2rem', padding: 0 }}>
-                                                {SONGS.slice(0, 5).map((song) => (
-                                                    <li key={song.id} style={{ marginBottom: '0.5rem' }}>
-                                                        <span style={{ fontWeight: 600 }}>{song.title}</span>: {song.chords.map((c) => <span className="chord-badge" key={c}>{c}</span>)}
-                                                    </li>
-                                                ))}
-                                            </ul>
+                            <div className="chord-picker">
+                                <div className="chord-grid">
+                                    {CHORDS.map((chord) => (
+                                        <button
+                                            key={chord}
+                                            className={
+                                                "chord-btn" +
+                                                (selectedChords.includes(chord) ? " selected" : "")
+                                            }
+                                            onClick={() => toggleChord(chord)}
+                                            disabled={
+                                                !selectedChords.includes(chord) &&
+                                                selectedChords.length >= 4
+                                            }
+                                        >
+                                            {chord}
+                                        </button>
+                                    ))}
+                                </div>
+                                <div className="chord-count">
+                                    {selectedChords.length === 0
+                                        ? "Select 3–4 chords to get started!"
+                                        : `${filteredSongs.length} song(s) found`}
+                                </div>
+                                <div className="song-list">
+                                    {selectedChords.length === 0 ? (
+                                        <div className="empty-state">Pick some chords above to discover songs you can play!</div>
+                                    ) : filteredSongs.length === 0 ? (
+                                        <div className="empty-state">
+                                            No matches yet. Try adding or removing a chord!<br />
+                                            <div style={{ marginTop: '1rem' }}>
+                                                <b>Try these chord combos:</b>
+                                                <ul style={{ margin: '0.5rem 0 0 1.2rem', padding: 0 }}>
+                                                    {SONGS.slice(0, 5).map((song) => (
+                                                        <li key={song.id} style={{ marginBottom: '0.5rem' }}>
+                                                            <span style={{ fontWeight: 600 }}>{song.title}</span>: {song.chords.map((c) => (
+                                                                <span className="chord-badge" key={c}>{c}</span>
+                                                            ))}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                ) : (
-                                    filteredSongs.map((song) => renderSongCard(song))
-                                )}
+                                    ) : (
+                                        filteredSongs.map((song) => renderSongCard(song))
+                                    )}
+                                </div>
                             </div>
                         </>
                     )}
                 </main>
             )}
+
+            {view === "chords" && <ChordDiagrams />}
 
             {view === "detail" && activeSong && (
                 <div className="song-detail">
@@ -208,8 +216,6 @@ export default function App() {
                     <pre className="lyrics">{activeSong.lyrics}</pre>
                 </div>
             )}
-
-            {view === "chords" && <ChordDiagrams />}
 
             {view === "favorites" && (
                 <main>

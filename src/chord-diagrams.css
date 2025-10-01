@@ -10,12 +10,15 @@
     color: #333;
 }
 
-.chord-grid {
+.chord-diagrams-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     gap: 30px;
     justify-items: center;
     padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .chord-diagram {

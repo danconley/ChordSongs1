@@ -165,7 +165,7 @@ export function ChordDiagrams() {
     return (
         <div className="chord-diagrams-page">
             <h2>Guitar Chord Diagrams</h2>
-            <div className="chord-grid">
+            <div className="chord-diagrams-grid">
                 {Object.entries(CHORD_DIAGRAMS).map(([name, diagram]) => (
                     <ChordDiagram key={name} name={name} diagram={diagram} />
                 ))}
