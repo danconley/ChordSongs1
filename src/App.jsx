@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import "./styles.css";
 import logo from "../chordsongs_bigger_trans.png";
@@ -22,6 +21,7 @@ export default function App() {
     const [favorites, setFavs] = useState(getFavorites());
     const [view, setView] = useState("main");
     const [activeSong, setActiveSong] = useState(null);
+    const [discoverVisible, setDiscoverVisible] = useState(false);
 
     useEffect(() => {
         setFavorites(favorites);
@@ -50,91 +50,131 @@ export default function App() {
         );
     };
 
+    const renderSongCard = (song) => (
+        <div
+            key={song.id}
+            className="song-card"
+            onClick={() => {
+                setActiveSong(song);
+                setView("detail");
+            }}
+        >
+            <div className="song-title">{song.title}</div>
+            <div className="song-artist">{song.artist}</div>
+            <div className="song-chords">
+                {song.chords.map((c) => (
+                    <span className="chord-badge" key={c}>{c}</span>
+                ))}
+            </div>
+            <button
+                className={
+                    "heart-btn" + (isFavorite(song.id) ? " favorited" : "")
+                }
+                onClick={(e) => {
+                    e.stopPropagation();
+                    toggleFavorite(song.id);
+                }}
+                aria-label="Toggle Favorite"
+            >
+                {isFavorite(song.id) ? "♥" : "♡"}
+            </button>
+        </div>
+    );
+
     return (
         <div className="app-bg">
             <header className="header">
                 <img src={logo} alt="ChordSongs Logo" className="logo" />
                 <h1>ChordSongs</h1>
-                <button className="tab-btn" onClick={() => setView("main")}>Discover</button>
-                <button className="tab-btn" onClick={() => setView("favorites")}>Favorites</button>
+                <button
+                    className="tab-btn"
+                    onClick={() => {
+                        setView("main");
+                        setDiscoverVisible(false);
+                    }}
+                >
+                    Home
+                </button>
+                <button
+                    className="tab-btn"
+                    onClick={() => {
+                        setView("main");
+                        setDiscoverVisible(true);
+                    }}
+                >
+                    Discover
+                </button>
+                <button
+                    className="tab-btn"
+                    onClick={() => {
+                        setView("favorites");
+                        setDiscoverVisible(false);
+                    }}
+                >
+                    Favorites
+                </button>
             </header>
+
             {view === "main" && (
                 <main>
-                    <h2>Pick Your Chords</h2>
-                    <div className="chord-grid">
-                        {CHORDS.map((chord) => (
-                            <button
-                                key={chord}
-                                className={
-                                    "chord-btn" +
-                                    (selectedChords.includes(chord) ? " selected" : "")
-                                }
-                                onClick={() => toggleChord(chord)}
-                                disabled={
-                                    !selectedChords.includes(chord) && selectedChords.length >= 4
-                                }
-                            >
-                                {chord}
-                            </button>
-                        ))}
-                    </div>
-                    <div className="chord-count">
-                        {selectedChords.length === 0
-                            ? "Select 3–4 chords to get started!"
-                            : `${filteredSongs.length} song(s) found`}
-                    </div>
-                    <div className="song-list">
-                        {selectedChords.length === 0 ? (
-                            <div className="empty-state">Pick some chords above to discover songs you can play!</div>
-                        ) : filteredSongs.length === 0 ? (
-                            <div className="empty-state">
-                                No matches yet. Try adding or removing a chord!<br />
-                                <div style={{ marginTop: '1rem' }}>
-                                    <b>Try these chord combos:</b>
-                                    <ul style={{ margin: '0.5rem 0 0 1.2rem', padding: 0 }}>
-                                        {SONGS.slice(0, 5).map((song) => (
-                                            <li key={song.id} style={{ marginBottom: '0.5rem' }}>
-                                                <span style={{ fontWeight: 600 }}>{song.title}</span>: {song.suggestion.map((c) => <span className="chord-badge" key={c}>{c}</span>)}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                    {discoverVisible ? (
+                        <>
+                            <h2>All Available Songs</h2>
+                            <div className="song-list">
+                                {SONGS.map((song) => renderSongCard(song))}
                             </div>
-                        ) : (
-                            filteredSongs.map((song) => (
-                                <div
-                                    key={song.id}
-                                    className="song-card"
-                                    onClick={() => {
-                                        setActiveSong(song);
-                                        setView("detail");
-                                    }}
-                                >
-                                    <div className="song-title">{song.title}</div>
-                                    <div className="song-artist">{song.artist}</div>
-                                    <div className="song-chords">
-                                        {song.chords.map((c) => (
-                                            <span className="chord-badge" key={c}>{c}</span>
-                                        ))}
-                                    </div>
+                        </>
+                    ) : (
+                        <>
+                            <h2>Pick Your Chords</h2>
+                            <div className="chord-grid">
+                                {CHORDS.map((chord) => (
                                     <button
+                                        key={chord}
                                         className={
-                                            "heart-btn" + (isFavorite(song.id) ? " favorited" : "")
+                                            "chord-btn" +
+                                            (selectedChords.includes(chord) ? " selected" : "")
                                         }
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            toggleFavorite(song.id);
-                                        }}
-                                        aria-label="Toggle Favorite"
+                                        onClick={() => toggleChord(chord)}
+                                        disabled={
+                                            !selectedChords.includes(chord) && selectedChords.length >= 4
+                                        }
                                     >
-                                        ♥
+                                        {chord}
                                     </button>
-                                </div>
-                            ))
-                        )}
-                    </div>
+                                ))}
+                            </div>
+                            <div className="chord-count">
+                                {selectedChords.length === 0
+                                    ? "Select 3–4 chords to get started!"
+                                    : `${filteredSongs.length} song(s) found`}
+                            </div>
+                            <div className="song-list">
+                                {selectedChords.length === 0 ? (
+                                    <div className="empty-state">Pick some chords above to discover songs you can play!</div>
+                                ) : filteredSongs.length === 0 ? (
+                                    <div className="empty-state">
+                                        No matches yet. Try adding or removing a chord!<br />
+                                        <div style={{ marginTop: '1rem' }}>
+                                            <b>Try these chord combos:</b>
+                                            <ul style={{ margin: '0.5rem 0 0 1.2rem', padding: 0 }}>
+                                                {SONGS.slice(0, 5).map((song) => (
+                                                    <li key={song.id} style={{ marginBottom: '0.5rem' }}>
+                                                        <span style={{ fontWeight: 600 }}>{song.title}</span>: {song.chords.map((c) => <span className="chord-badge" key={c}>{c}</span>)}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    filteredSongs.map((song) => renderSongCard(song))
+                                )}
+                            </div>
+                        </>
+                    )}
                 </main>
             )}
+
             {view === "detail" && activeSong && (
                 <div className="song-detail">
                     <button className="back-btn" onClick={() => setView("main")}>← Back</button>
@@ -152,11 +192,12 @@ export default function App() {
                         onClick={() => toggleFavorite(activeSong.id)}
                         aria-label="Toggle Favorite"
                     >
-                        ♥
+                        {isFavorite(activeSong.id) ? "♥" : "♡"}
                     </button>
                     <pre className="lyrics">{activeSong.lyrics}</pre>
                 </div>
             )}
+
             {view === "favorites" && (
                 <main>
                     <h2>Your Favorites</h2>
@@ -164,36 +205,7 @@ export default function App() {
                         {favorites.length === 0 ? (
                             <div className="empty-state">No favorites yet. Discover songs and tap the heart to save them!</div>
                         ) : (
-                            SONGS.filter((s) => favorites.includes(s.id)).map((song) => (
-                                <div
-                                    key={song.id}
-                                    className="song-card"
-                                    onClick={() => {
-                                        setActiveSong(song);
-                                        setView("detail");
-                                    }}
-                                >
-                                    <div className="song-title">{song.title}</div>
-                                    <div className="song-artist">{song.artist}</div>
-                                    <div className="song-chords">
-                                        {song.chords.map((c) => (
-                                            <span className="chord-badge" key={c}>{c}</span>
-                                        ))}
-                                    </div>
-                                    <button
-                                        className={
-                                            "heart-btn" + (isFavorite(song.id) ? " favorited" : "")
-                                        }
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            toggleFavorite(song.id);
-                                        }}
-                                        aria-label="Toggle Favorite"
-                                    >
-                                        ♥
-                                    </button>
-                                </div>
-                            ))
+                            SONGS.filter((s) => favorites.includes(s.id)).map((song) => renderSongCard(song))
                         )}
                     </div>
                 </main>
