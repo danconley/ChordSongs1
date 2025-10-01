@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // SongCard: compact card used in lists. Props: song, onSelect, onToggleFavorite, isFavorited
 export default function SongCard({ song, onSelect, onToggleFavorite, isFavorited }) {
@@ -27,3 +28,16 @@ export default function SongCard({ song, onSelect, onToggleFavorite, isFavorited
     </div>
   );
 }
+
+SongCard.propTypes = {
+  song: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    artist: PropTypes.string,
+    chords: PropTypes.arrayOf(PropTypes.string).isRequired,
+    lyricsSnippet: PropTypes.string,
+  }).isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onToggleFavorite: PropTypes.func.isRequired,
+  isFavorited: PropTypes.bool,
+};

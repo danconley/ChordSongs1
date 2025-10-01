@@ -6,6 +6,7 @@ import { SONGS } from "./songs";
 import { ChordDiagrams } from "./ChordDiagrams";
 import SongCard from "./SongCard";
 import SongDetail from "./SongDetail";
+import Header from "./Header";
 
 // Common chord set shown in the chord picker. Keep this in sync with `songs.js` suggestions.
 const CHORDS = ["C", "G", "D", "Em", "Am", "F", "A", "E", "Dm"];
@@ -77,46 +78,12 @@ export default function App() {
 
     return (
         <div className="app-bg">
-            <header className="header">
-                <img src={logo} alt="ChordSongs Logo" className="logo" />
-                <h1>ChordSongs</h1>
-                <button
-                    className="tab-btn"
-                    onClick={() => {
-                        setView("main");
-                        setDiscoverVisible(false);
-                    }}
-                >
-                    Home
-                </button>
-                <button
-                    className="tab-btn"
-                    onClick={() => {
-                        setView("main");
-                        setDiscoverVisible(true);
-                    }}
-                >
-                    Discover
-                </button>
-                <button
-                    className="tab-btn"
-                    onClick={() => {
-                        setView("favorites");
-                        setDiscoverVisible(false);
-                    }}
-                >
-                    Favorites
-                </button>
-                <button
-                    className="tab-btn"
-                    onClick={() => {
-                        setView("chords");
-                        setDiscoverVisible(false);
-                    }}
-                >
-                    Chord Diagrams
-                </button>
-            </header>
+            <Header
+                onHome={() => { setView('main'); setDiscoverVisible(false); }}
+                onDiscover={() => { setView('main'); setDiscoverVisible(true); }}
+                onFavorites={() => { setView('favorites'); setDiscoverVisible(false); }}
+                onChords={() => { setView('chords'); setDiscoverVisible(false); }}
+            />
 
             {view === "main" && (
                 <main>

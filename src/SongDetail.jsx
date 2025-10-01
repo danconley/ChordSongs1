@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // SongDetail: shows expanded info for a selected song
 export default function SongDetail({ song, onBack, onToggleFavorite, isFavorited }) {
@@ -51,3 +52,18 @@ export default function SongDetail({ song, onBack, onToggleFavorite, isFavorited
     </div>
   );
 }
+
+SongDetail.propTypes = {
+  song: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    artist: PropTypes.string,
+    chords: PropTypes.arrayOf(PropTypes.string).isRequired,
+    lyricsSnippet: PropTypes.string,
+    structure: PropTypes.array,
+    notes: PropTypes.string,
+  }),
+  onBack: PropTypes.func.isRequired,
+  onToggleFavorite: PropTypes.func.isRequired,
+  isFavorited: PropTypes.bool,
+};

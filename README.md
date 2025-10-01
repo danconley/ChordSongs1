@@ -1,16 +1,63 @@
-# React + Vite
+# ChordSongs (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Small single-page React app to browse simple song chord charts and chord diagrams.
 
-Currently, two official plugins are available:
+## Highlights
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Split `App.jsx` into smaller components: `SongCard.jsx`, `SongDetail.jsx`, and `Header.jsx`.
+- Chord diagrams view (`ChordDiagrams.jsx`) now uses a stable 3x3 grid.
+- `src/songs.js` provides compact song metadata (snippets, structure, notes) rather than full lyrics.
 
-## React Compiler
+## Quick start
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Install dependencies and run the dev server:
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Build for production:
+
+```bash
+npm run build
+```
+
+## Project layout (important files)
+
+- `src/App.jsx` — main application state and view switching
+- `src/Header.jsx` — top navigation
+- `src/SongCard.jsx` — compact song list item
+- `src/SongDetail.jsx` — expanded song view (structure, notes)
+- `src/ChordDiagrams.jsx` + `src/chord-diagrams.css` — chord diagram visuals
+- `src/songs.js` — data source for songs (id, title, artist, chords, lyricsSnippet, structure, notes)
+
+## Song data shape (in `src/songs.js`)
+
+- `id`: number (unique)
+- `title`: string
+- `artist`: string
+- `chords`: string[] (e.g., ["C","G","Am"])
+- `lyricsSnippet`: short non-copyrighted lyric excerpt (optional)
+- `structure`: [{ name, chords, repeats }] (optional)
+- `notes`: string (optional)
+
+### Rationale for snippets
+
+To avoid storing copyrighted lyrics in the repo and to keep the app focused on chord learning, songs store concise snippets and a simple structure. Link to licensed lyrics externally if needed.
+
+## Development suggestions
+
+- Add a small test that asserts each `SONGS` entry includes `id`, `title`, `chords`, and either `lyricsSnippet` or `lyrics`.
+- Consider migrating to TypeScript for stronger types and developer tooling.
+- Improve accessibility: ensure focus states, ARIA labels, and color contrast meet a11y standards.
+
+## Contribution
+
+If you want to contribute:
+
+1. Fork the repo and create a feature branch.
+2. Run the app locally and add a unit test for your change where appropriate.
+3. Open a PR with a short description of changes.
+
+If you'd like, I can add unit tests for `src/songs.js` or migrate the project to TypeScript—tell me which and I'll implement it.
