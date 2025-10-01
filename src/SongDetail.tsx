@@ -31,17 +31,17 @@ export default function SongDetail({ song, onBack, onToggleFavorite, isFavorited
       <div className="lyrics">
         {song.lyricsSnippet ? (
           <p>{song.lyricsSnippet}</p>
-        ) : (song as any).lyrics ? (
-          <pre>{(song as any).lyrics}</pre>
+        ) : song.lyrics ? (
+          <pre>{song.lyrics}</pre>
         ) : null}
 
         {song.structure && (
           <div className="structure">
             <h4>Structure</h4>
             <ol>
-              {song.structure.map((part: any, idx: number) => (
+              {song.structure.map((part, idx: number) => (
                 <li key={idx}>
-                  <strong>{part.name}:</strong> {Array.isArray(part.chords) ? part.chords.join(' - ') : (part as any).chords} {part.repeats ? `(x${part.repeats})` : ''}
+                  <strong>{part.name}:</strong> {Array.isArray(part.chords) ? part.chords.join(' - ') : part.chords} {part.repeats ? `(x${part.repeats})` : ''}
                 </li>
               ))}
             </ol>

@@ -4,7 +4,8 @@ export type Song = {
   artist: string;
   chords: string[];
   lyricsSnippet?: string;
-  structure?: { name: string; chords: string[]; repeats?: number }[];
+  lyrics?: string;
+  structure?: { name: string; chords: string[] | string; repeats?: number }[];
   notes?: string;
   suggestion?: string[];
 };

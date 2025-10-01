@@ -3,7 +3,7 @@ import { CHORD_DIAGRAMS } from '../src/ChordDiagrams';
 
 describe('CHORD_DIAGRAMS', () => {
   it('has entries and each diagram has frets and fingers arrays', () => {
-    const diagrams: any = (CHORD_DIAGRAMS as any) || {};
+    const diagrams = (CHORD_DIAGRAMS as Record<string, { frets: Array<number | null>; fingers: number[] }> | undefined) || {};
     expect(diagrams, 'CHORD_DIAGRAMS is not exported from src/ChordDiagrams').toBeDefined();
     const dkeys = Object.keys(diagrams);
     expect(dkeys.length).toBeGreaterThan(0);

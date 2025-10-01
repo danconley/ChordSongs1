@@ -13,9 +13,9 @@ export default function SongCard({ song, onSelect, onToggleFavorite, isFavorited
     <div className="song-card" onClick={() => onSelect(song)}>
       <div className="song-title">{song.title}</div>
       <div className="song-artist">{song.artist}</div>
-      {(song.lyricsSnippet || (song as any).lyrics) && (
-        <div className="song-snippet">{song.lyricsSnippet || String((song as any).lyrics).split('\n')[0]}</div>
-      )}
+          {(song.lyricsSnippet || song.lyrics) && (
+            <div className="song-snippet">{song.lyricsSnippet || String(song.lyrics).split('\n')[0]}</div>
+          )}
       <div className="song-chords">
         {song.chords.map((c: string) => (
           <span className="chord-badge" key={c}>{c}</span>
