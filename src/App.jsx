@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
+import "./chord-diagrams.css";
 import logo from "../chordsongs_bigger_trans.png";
 import { SONGS } from "./songs";
+import { ChordDiagrams } from "./ChordDiagrams";
 const CHORDS = ["C", "G", "D", "Em", "Am", "F", "A", "E", "Dm"];
 
 function getFavorites() {
@@ -113,6 +115,15 @@ export default function App() {
                 >
                     Favorites
                 </button>
+                <button
+                    className="tab-btn"
+                    onClick={() => {
+                        setView("chords");
+                        setDiscoverVisible(false);
+                    }}
+                >
+                    Chord Diagrams
+                </button>
             </header>
 
             {view === "main" && (
@@ -197,6 +208,8 @@ export default function App() {
                     <pre className="lyrics">{activeSong.lyrics}</pre>
                 </div>
             )}
+
+            {view === "chords" && <ChordDiagrams />}
 
             {view === "favorites" && (
                 <main>
