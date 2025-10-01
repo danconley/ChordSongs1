@@ -94,3 +94,17 @@ If you're continuing work on this project, here is a prioritized list of small-t
 	- Acceptance: basic a11y audit finds no keyboard focus traps and color contrast >= 4.5:1 for body copy.
 
 If you want, I can implement items 1–3 in that order (CI → component tests → structure normalization). Tell me which ones to start and I'll create a focused todo and implement it.
+
+Image cropping helper
+---------------------
+
+If you want a pre-cropped header image (trimmed top & bottom), there's a tiny Node script included at `scripts/crop-image.js`. It uses Jimp to crop the central 80% of the image vertically and writes `public/chordsongs_cropped.png`.
+
+To run it locally:
+
+```bash
+npm install jimp --legacy-peer-deps
+node scripts/crop-image.js
+```
+
+This container couldn't install system-level image tools, so the script is provided to run on your machine or CI.
