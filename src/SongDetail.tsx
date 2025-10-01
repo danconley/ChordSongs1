@@ -1,5 +1,5 @@
 import React from 'react';
-import { Song } from '@/lib/songs';
+import { Song } from '../lib/songs';
 
 type SongDetailProps = {
   song: Song | null;
