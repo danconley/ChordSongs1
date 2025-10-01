@@ -11,7 +11,7 @@ type HeaderProps = {
 export default function Header({ onHome, onDiscover, onFavorites, onChords }: HeaderProps) {
   return (
     <header className="header">
-      <img src={logo} alt="ChordSongs Logo" className="logo" />
+      <img src={logo} alt="ChordSongs Logo" className="logo header-logo" />
       <h1>ChordSongs</h1>
       <button className="tab-btn" onClick={onHome}>Home</button>
       <button className="tab-btn" onClick={onDiscover}>Discover</button>

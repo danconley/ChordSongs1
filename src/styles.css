@@ -40,6 +40,15 @@ main {
   height: 48px;
   margin-right: 1rem;
 }
+
+/* Header logo crop: keep image centered and crop top/bottom as needed */
+.header-logo {
+  width: 140px; /* adjust to taste */
+  height: 48px;
+  object-fit: cover;
+  object-position: center center; /* trim top and bottom evenly */
+  border-radius: 8px;
+}
 h1 {
   font-size: 2rem;
   font-weight: 700;
