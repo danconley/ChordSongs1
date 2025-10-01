@@ -62,6 +62,11 @@ If you want to contribute:
 
 If you'd like, I can add unit tests for `lib/songs.ts` or continue migrating the project to TypeScript—tell me which and I'll implement it.
 
+CI
+--
+
+This project includes a basic GitHub Actions workflow that runs typechecking, tests, and a production build on push/PR to main. See `.github/workflows/ci.yml`.
+
 ## Suggested TODOs
 
 If you're continuing work on this project, here is a prioritized list of small-to-medium tasks that will improve stability, DX, and test coverage. Each item is intentionally scoped to be fast to implement and low-risk.
