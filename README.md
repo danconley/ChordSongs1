@@ -61,3 +61,36 @@ If you want to contribute:
 3. Open a PR with a short description of changes.
 
 If you'd like, I can add unit tests for `lib/songs.ts` or continue migrating the project to TypeScript—tell me which and I'll implement it.
+
+## Suggested TODOs
+
+If you're continuing work on this project, here is a prioritized list of small-to-medium tasks that will improve stability, DX, and test coverage. Each item is intentionally scoped to be fast to implement and low-risk.
+
+1. Add CI that runs typecheck + tests
+	- Create a GitHub Actions workflow that runs `npm ci`, `npm run typecheck`, and `npm test` on pull requests and pushes to `main`.
+	- Acceptance: workflow runs on PR and shows green for existing tests.
+
+2. Add component tests for UI pieces
+	- Add React Testing Library + vitest DOM tests for `SongCard` and `SongDetail` (happy path + one edge case each).
+	- Acceptance: tests render components, simulate click events, and assert DOM changes.
+
+3. Normalize `Song.structure` shape and remove runtime unions
+	- Migrate `structure[].chords` to always be `string[]`. Convert any string values to arrays in `lib/songs.ts` and update type definitions.
+	- Acceptance: no runtime casts remain in components that render `structure`.
+
+4. Add a small end-to-end smoke test (optional)
+	- Use Playwright or a lightweight headless browser check to confirm the app loads and the chord diagrams page renders without errors.
+	- Acceptance: headless run returns 200 and finds the `.chord-diagrams-grid` element.
+
+5. Improve path alias consistency
+	- Make `@/lib/*` work reliably for TypeScript and Vite; update imports to use the alias across the codebase for clarity.
+	- Acceptance: `tsc --noEmit` passes with alias imports; Vite dev server runs without module resolution warnings.
+
+6. Add a CONTRIBUTING.md and small dev notes
+	- Document how to run tests, typecheck, and start the dev server. Include a checklist for PRs.
+
+7. Accessibility quick wins
+	- Add ARIA labels to interactive controls, verify color contrast, and ensure tab focus order is logical.
+	- Acceptance: basic a11y audit finds no keyboard focus traps and color contrast >= 4.5:1 for body copy.
+
+If you want, I can implement items 1–3 in that order (CI → component tests → structure normalization). Tell me which ones to start and I'll create a focused todo and implement it.
