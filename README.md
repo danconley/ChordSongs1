@@ -108,3 +108,13 @@ node scripts/crop-image.js
 ```
 
 This container couldn't install system-level image tools, so the script is provided to run on your machine or CI.
+
+New header assets
+-----------------
+
+This repo now contains cropped header images in `src/assets`:
+
+- `src/assets/chordsongs_cropped.png` (140×48)
+- `src/assets/chordsongs_cropped@2x.png` (280×96)
+
+The header component (`src/Header.tsx`) has been updated to use these images with srcset for high-DPI screens. The CSS class `.header-logo` controls sizing and cropping; adjust `object-position` in `src/styles.css` to fine-tune the visible area.

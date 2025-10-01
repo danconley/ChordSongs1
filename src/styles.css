@@ -43,11 +43,18 @@ main {
 
 /* Header logo crop: keep image centered and crop top/bottom as needed */
 .header-logo {
-  width: 140px; /* adjust to taste */
+  width: 140px; /* exact display size */
   height: 48px;
   object-fit: cover;
-  object-position: center center; /* trim top and bottom evenly */
+  object-position: center center; /* trim top and bottom evenly; change to 'center -8px' to shift */
   border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .header-logo {
+    width: 110px;
+    height: 38px;
+  }
 }
 h1 {
   font-size: 2rem;
