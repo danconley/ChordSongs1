@@ -6,7 +6,7 @@ Small single-page React app to browse simple song chord charts and chord diagram
 
 - Split `App.jsx` into smaller components: `SongCard.jsx`, `SongDetail.jsx`, and `Header.jsx`.
 - Chord diagrams view (`ChordDiagrams.jsx`) now uses a stable 3x3 grid.
-- `src/songs.js` provides compact song metadata (snippets, structure, notes) rather than full lyrics.
+- `lib/songs.js` provides compact song metadata (snippets, structure, notes) rather than full lyrics.
 
 ## Quick start
 
@@ -30,9 +30,9 @@ npm run build
 - `src/SongCard.jsx` — compact song list item
 - `src/SongDetail.jsx` — expanded song view (structure, notes)
 - `src/ChordDiagrams.jsx` + `src/chord-diagrams.css` — chord diagram visuals
-- `src/songs.js` — data source for songs (id, title, artist, chords, lyricsSnippet, structure, notes)
+- `lib/songs.js` — data source for songs (id, title, artist, chords, lyricsSnippet, structure, notes)
 
-## Song data shape (in `src/songs.js`)
+## Song data shape (in `lib/songs.js`)
 
 - `id`: number (unique)
 - `title`: string
@@ -48,7 +48,7 @@ To avoid storing copyrighted lyrics in the repo and to keep the app focused on c
 
 ## Development suggestions
 
-- Add a small test that asserts each `SONGS` entry includes `id`, `title`, `chords`, and either `lyricsSnippet` or `lyrics`.
+- Add a small test that asserts each `SONGS` entry includes `id`, `title`, `chords`, and either `lyricsSnippet` or `lyrics` (file: `lib/songs.js`).
 - Consider migrating to TypeScript for stronger types and developer tooling.
 - Improve accessibility: ensure focus states, ARIA labels, and color contrast meet a11y standards.
 
@@ -60,4 +60,4 @@ If you want to contribute:
 2. Run the app locally and add a unit test for your change where appropriate.
 3. Open a PR with a short description of changes.
 
-If you'd like, I can add unit tests for `src/songs.js` or migrate the project to TypeScript—tell me which and I'll implement it.
+If you'd like, I can add unit tests for `lib/songs.js` or migrate the project to TypeScript—tell me which and I'll implement it.

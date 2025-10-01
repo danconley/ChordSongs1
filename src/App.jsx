@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import "./chord-diagrams.css";
 import logo from "../chordsongs_bigger_trans.png";
-import { SONGS } from "./songs";
+import { SONGS } from "../lib/songs";
 import { ChordDiagrams } from "./ChordDiagrams";
 import SongCard from "./SongCard";
 import SongDetail from "./SongDetail";
 import Header from "./Header";
 
-// Common chord set shown in the chord picker. Keep this in sync with `songs.js` suggestions.
+// Common chord set shown in the chord picker. Keep this in sync with `SONGS` suggestions in `lib/songs.js`.
 const CHORDS = ["C", "G", "D", "Em", "Am", "F", "A", "E", "Dm"];
 
 // Read favorites from localStorage. Return an array of song ids.
